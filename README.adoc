@@ -1,0 +1,3 @@
+= Kaffeehaus Demo
+
+Spring to Quarkus migration example project
