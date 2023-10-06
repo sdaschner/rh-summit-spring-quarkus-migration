@@ -11,11 +11,13 @@ function cleanup() {
 }
 
 
+
 cleanup
 
 docker run -d --rm \
   --name kaffeehaus-db \
   --network dkrnet \
+  -p 5432:5432 \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=postgres \
   postgres:15.2
@@ -25,5 +27,4 @@ docker run --rm \
   --name kaffeehaus \
   --network dkrnet \
   -p 8080:8080 \
-  -e SPRING_DATASOURCE_URL=jdbc:postgresql://kaffeehaus-db:5432/postgres \
   kaffeehaus

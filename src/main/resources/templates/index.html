@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Orders - Coffee demo</title>
+    <title>Orders - Kaffeehaus</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1 th:text="${greeting}"></h1>
+<h1>{greeting}</h1>
 
 <h2>All coffee orders</h2>
 
@@ -21,11 +21,13 @@
         <th>Type</th>
         <th>Origin</th>
     </tr>
-    <tr th:each="order : ${orders}">
-        <td th:text="${#temporals.format(order.created, 'dd MMM uuuu ''at'' HH:mm:ss')}">{instant:format(order.created)}</td>
-        <td th:text="${order.type.description}"></td>
-        <td th:text="${order.origin.name}"></td>
+    {#for order in orders}
+    <tr>
+        <td>{instant:format(order.created)}</td>
+        <td>{order.type.description}</td>
+        <td>{order.origin.name}</td>
     </tr>
+    {/for}
 </table>
 
 </body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Order coffee - Coffee demo</title>
+    <title>Order coffee - Kaffeehaus</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -13,13 +13,15 @@
 
 <p><a href="/index.html">Show all orders</a></p>
 
-<p th:if="${failed}" class="error">Could not create the order. Please select all values properly.</p>
+{#if failed??}<p class="error">Could not create the order. Please select all values properly.</p>{/if}
 
 <form action="/order.html" method="post">
     <div class="grid">
         <select name="type" required="required">
             <option value="">Select type</option>
-            <option th:each="type : ${types}" th:value="${#strings.capitalize(type.description)}" th:text="${type.description}"></option>
+            {#for type in types}
+            <option value="{string:capitalize(type.name)}">{type.description}</option>
+            {/for}
         </select>
         <select name="origin" disabled="disabled" required="required">
             <option value="">Select origin</option>
